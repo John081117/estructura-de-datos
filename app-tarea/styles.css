@@ -1,0 +1,22 @@
+body { 
+    font-family: sans-serif; 
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.tarea-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+.btn-eliminar{
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
