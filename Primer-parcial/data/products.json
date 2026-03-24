@@ -1,50 +1,50 @@
 [
   {
     "id": 1,
-    "name": "Nike Air Max",
-    "price": "$120.00",
-    "description": "Zapatillas deportivas con amortiguación máxima y diseño clásico.",
-    "image": "👟",
-    "category": "sport"
+    "name": "Nike Mercurial Superfly",
+    "price": "$160.00",
+    "description": "Taco de césped natural, ligero y con tracción superior.",
+    "image": "⚽",
+    "category": "cesped"
   },
   {
     "id": 2,
-    "name": "Adidas Ultra Boost",
-    "price": "$140.00",
-    "description": "Tecnología de impulso ultravioleta para máximo confort y rendimiento.",
-    "image": "👟",
-    "category": "sport"
+    "name": "Adidas Predator Accuracy",
+    "price": "$150.00",
+    "description": "Diseño de precisión para tiros y pases en campo sintético.",
+    "image": "⚽",
+    "category": "sintetica"
   },
   {
     "id": 3,
-    "name": "Converse All Star",
-    "price": "$65.00",
-    "description": "Clásicos zapatos de lona ideales para todo tipo de ocasiones.",
-    "image": "👟",
-    "category": "casual"
+    "name": "Puma Future Z 1.1",
+    "price": "$145.00",
+    "description": "Control adaptable y agarre perfecto para césped y artificial.",
+    "image": "⚽",
+    "category": "cesped"
   },
   {
     "id": 4,
-    "name": "Puma Court Legacy",
-    "price": "$85.00",
-    "description": "Estilo retro con comodidad moderna para el día a día.",
-    "image": "👟",
-    "category": "casual"
+    "name": "Nike Premier II Sala",
+    "price": "$130.00",
+    "description": "Calzado clásico para microfútbol con amortiguación y confort.",
+    "image": "⚽",
+    "category": "microfutbol"
   },
   {
     "id": 5,
-    "name": "New Balance 990v5",
-    "price": "$185.00",
-    "description": "Equilibrio perfecto entre estilo y funcionalidad deportiva.",
-    "image": "👟",
-    "category": "sport"
+    "name": "Adidas X Ghosted Sala",
+    "price": "$138.00",
+    "description": "Máxima velocidad en pistas cubiertas y superficies sintéticas.",
+    "image": "⚽",
+    "category": "microfutbol"
   },
   {
     "id": 6,
-    "name": "Vans Old Skool",
-    "price": "$75.00",
-    "description": "Icónico diseño skate con estabilidad y estilo inconfundible.",
-    "image": "👟",
-    "category": "casual"
+    "name": "Mizuno Morelia Neo",
+    "price": "$155.00",
+    "description": "Comodidad profesional para césped natural y sintético.",
+    "image": "⚽",
+    "category": "sintetica"
   }
 ]

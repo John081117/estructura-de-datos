@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SneakerHub - Tu Tienda de Zapatillas</title>
+  <title>FUTTZAP - Tienda de Fútbol</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -17,8 +17,12 @@
 
     <!-- Contenido Principal -->
     <main class="main-content">
-      <h1>Bienvenido a SneakerHub</h1>
-      <p>Descubre nuestra colección exclusiva de zapatillas de las mejores marcas del mundo.</p>
+      <h1>Bienvenido a FUTTZAP</h1>
+      <p>Encuentra zapatillas de fútbol para césped, sintética y microfútbol con la mejor tracción y diseño.</p>
+
+      <div class="search-box">
+        <input id="product-search" type="text" placeholder="Buscar por nombre de producto..." />
+      </div>
 
       <!-- Plantilla reutilizable de producto -->
       <template id="product-template">
@@ -56,6 +60,8 @@
      * Carga componentes y productos al cargar la página
      */
 
+    let loadedProducts = [];
+
     document.addEventListener('DOMContentLoaded', async function() {
       console.log('🚀 Inicializando SneakerHub...');
 
@@ -69,32 +75,78 @@
 
       // 2. Cargar productos desde JSON
       console.log('📊 Cargando datos de productos...');
-      const products = await loadProducts();
+      loadedProducts = await loadProducts();
 
-      if (products.length > 0) {
-        // 3. Renderizar con Template HTML (primeros 3 productos)
-        console.log('🎨 Renderizando productos con Template...');
-        const templateProducts = products.slice(0, 3);
-        renderProductsWithTemplate(templateProducts, 'products-template-container');
-
-        // 4. Renderizar con Web Components (últimos 3 productos)
-        console.log('🧩 Renderizando productos con Web Components...');
-        const webComponentProducts = products.slice(3);
-        renderProductsWithWebComponents(webComponentProducts, 'products-webcomponents-container');
+      if (loadedProducts.length > 0) {
+        console.log('🎯 Aplicando filtro de categoría e inicializando productos...');
+        applyCategoryFilter();
       }
 
+      renderCart();
       console.log('✅ Aplicación lista');
     });
 
     // Agregar eventos a los botones de Template (delegación de eventos)
     document.addEventListener('click', function(e) {
       if (e.target.classList.contains('product-button')) {
-        const productCard = e.target.closest('.product-card');
-        const productName = productCard.querySelector('.product-name').textContent;
-        alert(`✅ "${productName}" agregado al carrito`);
-        console.log(`Producto agregado: ${productName}`);
+        const productId = e.target.getAttribute('data-product-id');
+        addToCart(productId);
       }
     });
+
+    // Escuchar eventos custom desde los web components
+    document.addEventListener('add-to-cart', function(event) {
+      const productId = event.detail?.id;
+      if (productId) {
+        addToCart(productId);
+      }
+    });
+
+    // Botones de carrito (incrementar, decrementar, eliminar)
+    document.addEventListener('click', function(event) {
+      if (event.target.classList.contains('cart-remove')) {
+        removeFromCart(event.target.dataset.productId);
+      }
+
+      if (event.target.classList.contains('cart-decrement')) {
+        decrementCartItem(event.target.dataset.productId);
+      }
+
+      if (event.target.classList.contains('cart-increment')) {
+        addToCart(event.target.dataset.productId);
+      }
+    });
+
+    // Manejo de categorías con hash en URL (ej: #cesped)
+    function applyCategoryFilter() {
+      const rawHash = window.location.hash.slice(1).toLowerCase();
+      const category = rawHash === '' || rawHash === 'all' ? 'all' : rawHash;
+
+      const listAll = category === 'all' ? loadedProducts : filterProductsByCategory(category);
+      const search = document.getElementById('product-search').value.trim().toLowerCase();
+      const filtered = search
+        ? listAll.filter(product => product.name.toLowerCase().includes(search))
+        : listAll;
+
+      document.querySelectorAll('#category-menu a').forEach(link => {
+        const linkCat = link.getAttribute('href').slice(1).toLowerCase();
+        link.classList.toggle('active', linkCat === category);
+      });
+
+      if (filtered.length === 0) {
+        document.getElementById('products-template-container').innerHTML = '<p class="no-products">No hay productos en esta categoría/consulta.</p>';
+        document.getElementById('products-webcomponents-container').innerHTML = '';
+        return;
+      }
+
+      renderProductsWithTemplate(filtered.slice(0, 3), 'products-template-container');
+      renderProductsWithWebComponents(filtered.slice(3), 'products-webcomponents-container');
+    }
+
+    // Filtrar en vivo mientras el usuario escribe
+    document.getElementById('product-search').addEventListener('input', applyCategoryFilter);
+
+    window.addEventListener('hashchange', applyCategoryFilter);
   </script>
 </body>
 </html>
