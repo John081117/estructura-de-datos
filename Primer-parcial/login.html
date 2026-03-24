@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - SneakerHub</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <h1 class="login-title">👟 SneakerHub</h1>
+      
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Usuario:</label>
+          <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            placeholder="Ingresa tu usuario"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña:</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Ingresa tu contraseña"
+            required
+          >
+        </div>
+
+        <button type="submit" class="login-button">Iniciar Sesión</button>
+      </form>
+
+      <div id="error-message" class="error-message"></div>
+      <div id="success-message" class="success-message"></div>
+
+      <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e0e0e0; text-align: center; font-size: 0.85rem; color: #666;">
+        <p><strong>Demo - Credenciales de prueba:</strong></p>
+        <p>Usuario: <code style="background: #f0f0f0; padding: 0.2rem 0.5rem;">admin</code></p>
+        <p>Contraseña: <code style="background: #f0f0f0; padding: 0.2rem 0.5rem;">12345</code></p>
+        <p style="margin-top: 1rem; color: #999;"><em>⚠️ Esto es solo con fines educativos</em></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    /**
+     * Script de manejo del formulario de login
+     */
+    const loginForm = document.getElementById('login-form');
+    const errorMessage = document.getElementById('error-message');
+    const successMessage = document.getElementById('success-message');
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      // Validar campos vacíos
+      if (!username || !password) {
+        showErrorMessage(errorMessage, '❌ Por favor, completa todos los campos');
+        return;
+      }
+
+      // Validar credenciales
+      if (validateLogin(username, password)) {
+        successMessage.textContent = '✅ Login exitoso. Redirigiendo...';
+        successMessage.classList.add('show');
+        redirectToHome(1000);
+      } else {
+        showErrorMessage(errorMessage, '❌ Usuario o contraseña incorrectos');
+        document.getElementById('password').value = '';
+      }
+    });
+  </script>
+</body>
+</html>

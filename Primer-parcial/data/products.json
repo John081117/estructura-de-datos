@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Nike Air Max",
+    "price": "$120.00",
+    "description": "Zapatillas deportivas con amortiguación máxima y diseño clásico.",
+    "image": "👟",
+    "category": "sport"
+  },
+  {
+    "id": 2,
+    "name": "Adidas Ultra Boost",
+    "price": "$140.00",
+    "description": "Tecnología de impulso ultravioleta para máximo confort y rendimiento.",
+    "image": "👟",
+    "category": "sport"
+  },
+  {
+    "id": 3,
+    "name": "Converse All Star",
+    "price": "$65.00",
+    "description": "Clásicos zapatos de lona ideales para todo tipo de ocasiones.",
+    "image": "👟",
+    "category": "casual"
+  },
+  {
+    "id": 4,
+    "name": "Puma Court Legacy",
+    "price": "$85.00",
+    "description": "Estilo retro con comodidad moderna para el día a día.",
+    "image": "👟",
+    "category": "casual"
+  },
+  {
+    "id": 5,
+    "name": "New Balance 990v5",
+    "price": "$185.00",
+    "description": "Equilibrio perfecto entre estilo y funcionalidad deportiva.",
+    "image": "👟",
+    "category": "sport"
+  },
+  {
+    "id": 6,
+    "name": "Vans Old Skool",
+    "price": "$75.00",
+    "description": "Icónico diseño skate con estabilidad y estilo inconfundible.",
+    "image": "👟",
+    "category": "casual"
+  }
+]
